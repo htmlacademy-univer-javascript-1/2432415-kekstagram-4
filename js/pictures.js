@@ -68,10 +68,7 @@ const renderComments = (comments) => {
   });
 
   fillCommentsCurrent(countComments);
-
-  if (countComments === commentsLength) {
-    removeLoadCommentsButton();
-  }
+  if (countComments === commentsLength) { removeLoadCommentsButton(); }
 };
 
 const onBigPhotoCloseButton = (evt) => {
@@ -97,7 +94,8 @@ const hiddensBigPhoto = () => {
 
 const onLoadCommentsButton = (evt) => {
   evt.preventDefault();
-  renderComments();
+  commentsLength = comments.length;
+  comments = [...comments];
 };
 
 function onDocumentKey(evt) {
