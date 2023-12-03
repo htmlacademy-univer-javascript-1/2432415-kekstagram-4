@@ -43,3 +43,5 @@ const createObj = () => ({
 });
 
 const createArray = Array.from({length:25}, createObj() );
+
+export {createArray};
