@@ -75,7 +75,6 @@ const onBigPhotoCloseButton = (evt) => {
   evt.preventDefault();
   hiddensBigPhoto();
 };
-
 const showBigPhotoElement = () => {
   countComments = 0;
   comments = '';
