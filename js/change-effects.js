@@ -1,7 +1,7 @@
 import {photoPreview} from './change-scale.js';
-
-const SET_FILTERS = [
-  {name: 'none',
+const SET_OF_FILTERS = [
+  {
+    name: 'none',
     style: 'none',
     min: 0,
     max: 100,
@@ -51,59 +51,63 @@ const SET_FILTERS = [
   },
 ];
 
-let clickedSet = SET_FILTERS[0];
+let clickSet = SET_OF_FILTERS[0];
 
-const effectBlock = document.querySelector('.effects');
-const sliderSetContainer = document.querySelector('.img-upload__effect-level');
 const levelEffect = document.querySelector('.effect-level__value');
 const sliderElem = document.querySelector('.effect-level__slider');
+const effectsBlock = document.querySelector('.effects');
+const sliderSetContainer = document.querySelector('.img-upload__effect-level');
 
-function hideSlaidContainer () {sliderSetContainer.classList.add('hidden');}
-function showSlaidContainer () {sliderSetContainer.classList.remove('hidden');}
+function hideSlaiderContainer () {sliderSetContainer.classList.add('hidden');}
+
+function showSlaiderContainer () {sliderSetContainer.classList.remove('hidden');}
 
 const templateSlider = ()=> sliderElem.noUiSlider.updateOptions({
   range: {
-    min: clickedSet.min,
-    max: clickedSet.max,},
-  step: clickedSet.step,
-  start: clickedSet.max,
+    min: clickSet.min,
+    max: clickSet.max,
+  },
+  step: clickSet.step,
+  start: clickSet.max,
 });
 
-const onAddsClassEffect = (evt) => {
-  clickedSet = SET_FILTERS.find((set)=> set.name === evt.target.value);
-  photoPreview.className = `effects__preview--${clickedSet.name}`;
-  templateSlider();
-};
-
 function recetEffects () {
-  clickedSet = SET_FILTERS[0];
+  clickSet = SET_OF_FILTERS[0];
   templateSlider();
 }
 
+const onAddsClassEffect = (evt) => {
+  clickSet = SET_OF_FILTERS.find((set)=> set.name === evt.target.value);
+  photoPreview.className = `effects__preview--${clickSet.name}`;
+  templateSlider();
+};
+
 noUiSlider.create(sliderElem, {
-  range: {
-    min: SET_FILTERS[0].min,
-    max: SET_FILTERS[0].max,
+  range:
+  {
+    min: SET_OF_FILTERS[0].min,
+    max: SET_OF_FILTERS[0].max,
   },
-  start: SET_FILTERS[0].min,
-  step: SET_FILTERS[0].step,
+  start: SET_OF_FILTERS[0].min,
+  step: SET_OF_FILTERS[0].step,
   connect: 'lower',
 });
 
 const onChangeLevelEffect = () => {
   const sliderLevel = sliderElem.noUiSlider.get() ;
-  if(clickedSet === SET_FILTERS[0]){
-    photoPreview.style.filter = SET_FILTERS[0].style;
-    hideSlaidContainer();
+  if(clickSet === SET_OF_FILTERS[0]){
+    photoPreview.style.filter = SET_OF_FILTERS[0].style;
+    hideSlaiderContainer();
   }
-  else{
-    photoPreview.style.filter = `${clickedSet.style}(${sliderLevel}${clickedSet.unit})`;
+  else
+  {
+    photoPreview.style.filter = `${clickSet.style}(${sliderLevel}${clickSet.unit})`;
     levelEffect.value = sliderLevel;
-    showSlaidContainer();
+    showSlaiderContainer();
   }
 };
 
-effectBlock.addEventListener('change', onAddsClassEffect);
+effectsBlock.addEventListener('change', onAddsClassEffect);
 sliderElem.noUiSlider.on('update', onChangeLevelEffect);
 
 export {recetEffects};
