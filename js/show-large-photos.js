@@ -1,4 +1,5 @@
 const newBody = document.querySelector('body');
+
 const bigPictureContainer = document.querySelector('.big-picture');
 const bigPictureClose = document.querySelector('.big-picture__cancel');
 
