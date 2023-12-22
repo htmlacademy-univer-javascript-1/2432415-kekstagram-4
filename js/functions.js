@@ -6,7 +6,8 @@ function  goesBeyondTheWorkingDay (dayStart, dayEnd, meetingStart, meetingDurati
   else { dayStart[0]=parseInt(dayStart[0]); }
 
   dayEnd= dayEnd.split(':');
-  if (dayEnd[0][0]=='0') {
+  if (dayEnd[0][0]=='0')
+  {
     if (dayEnd[0][1]=='0') { dayEnd[0]=0; }
     else { dayEnd[0]=parseInt(dayEnd[0][1]); } }
   else { dayEnd[0]=parseInt(dayEnd[0]); }
