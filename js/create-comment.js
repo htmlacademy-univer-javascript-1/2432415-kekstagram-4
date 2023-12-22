@@ -1,22 +1,24 @@
 import {getRandomInteger, createRandomIdFromRangeGenerator, getRandomArrayElement} from './util.js';
 
-const NAMES_LIST = [
+const MESSAGES = [
+  'Всё отлично!',
+  'В целом всё неплохо. Но не всё.',
+  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра',
+];
+
+const NAMES = [
   'Никита',
   'Олег',
-  'Порфирий'
+  'Порфирий',
 ];
 
-const MESSAGES_LIST = [
-  'Всё отлично!',
-  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра.'
-];
+const generateIdAvatar = createRandomIdFromRangeGenerator(1, 300);
 
-const generateAvatarId = createRandomIdFromRangeGenerator(1, 300);
 const createComments = ()=>({
-  id: generateAvatarId(),
+  id: generateIdAvatar(),
   avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
-  message: getRandomArrayElement(MESSAGES_LIST),
-  name: getRandomArrayElement(NAMES_LIST),
+  message: getRandomArrayElement(MESSAGES),
+  name: getRandomArrayElement(NAMES),
 });
 
 const generateCardsComments = () => Array.from({length: 12}, createComments);

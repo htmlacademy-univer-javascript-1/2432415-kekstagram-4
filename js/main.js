@@ -8,8 +8,10 @@ getData()
   .then((arrCards) => {
     renderCards(arrCards);
     showFiltersContainer();
-    selectFilter (arrCards);
+    selectFilter(arrCards);
   })
-  .catch( (err) => {showAlert(err.message);} );
+  .catch(
+    (err) => {showAlert(err.message);}
+  );
 
 setUserFormSubmit();
