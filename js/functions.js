@@ -49,9 +49,7 @@ checkNumber('ECMAScript 2022');
 function addsSimbol (string, limit, add){
   const realAdd = limit - string.length;
 
-  if(realAdd <= 0){
-    return string;
-  }
+  if(realAdd <= 0){return string;}
   return add.slice(0, realAdd % add.length) + add.repeat(realAdd / add.length) + string;
 }
 
