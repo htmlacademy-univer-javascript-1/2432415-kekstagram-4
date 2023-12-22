@@ -9,7 +9,7 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
-function openBigPicture () {
+function openBigPictureContainer () {
   bigPictureContainer.classList.remove('hidden');
   newBody.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
@@ -23,4 +23,4 @@ function closeBigPicture () {
 
 bigPictureClose.addEventListener('click', closeBigPicture);
 
-export {openBigPicture, bigPictureContainer};
+export {openBigPictureContainer, bigPictureContainer};
