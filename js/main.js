@@ -1,4 +1,5 @@
 import './functions.js';
+import './pictures.js';
 
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
