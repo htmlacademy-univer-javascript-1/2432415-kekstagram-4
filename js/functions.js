@@ -11,10 +11,11 @@ function checkPalindrome(phrase){
     prePhrase.unshift(phrase[i]);
     newPhrase = prePhrase.join('');
   }
-  if(phrase.toLowerCase() === newPhrase.toLowerCase()) {return true;}
-  else {return false;}
+  if(phrase.toLowerCase() === newPhrase.toLowerCase()){
+    return true;
+  }
+  else{return false;}
 }
-
 checkPalindrome('ДовОд');
 
 function checkNum(frase){
@@ -22,24 +23,14 @@ function checkNum(frase){
   for(let i = 0; i <= frase.length - 1; i++){
     if(!isNaN(frase[i]) && frase[i] !== ' '){numbers += frase[i];}
   }
-  if(numbers === '') {return NaN;}
+  if(numbers === ''){return NaN;}
   return numbers;
 }
-checkNum('а я томат');
-
-function checkNumber(frase){
-  let numbers = '';
-  for(let i = 0; i <= frase.length - 1; i++){
-    if(!Number.isNaN(parseInt(frase[i], 10))) {numbers += frase[i];}
-  }
-  return parseInt(numbers, 10);
-}
-checkNumber('ECMAScript 2022');
+checkNum('ECMAScript 2022');
 
 function addsSimbol (string, limit, add){
   const realAdd = limit - string.length;
-  if(realAdd <= 0) {return string;}
+  if(realAdd <= 0){return string;}
   return add.slice(0, realAdd % add.length) + add.repeat(realAdd / add.length) + string;
 }
-
 addsSimbol ('qwerty', 4, '0');

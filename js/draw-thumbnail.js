@@ -4,20 +4,18 @@ const PORTION_COMMENTS = 5;
 
 const picturesContainer = document.querySelector('.pictures');
 
+const allCoutns = bigPictureContainer.querySelector('.social__comment-count');
+const allLoaders = bigPictureContainer.querySelector('.comments-loader');
+
 const thumbnailTemplete = document.querySelector('#picture').content.querySelector('.picture');
 const thumbnailBox = document.createDocumentFragment();
 
 const commentstBlock = document.querySelector('.social__comments');
 const commentPattern = commentstBlock.querySelector('.social__comment');
 
-const allCoutns = bigPictureContainer.querySelector('.social__comment-count');
-
-const allLoaders = bigPictureContainer.querySelector('.comments-loader');
-
 const renderCards = (thumbnailArray) => {
   thumbnailArray.forEach((item) => {
     const newThumbnail = thumbnailTemplete.cloneNode(true);
-
     newThumbnail.querySelector('.picture__img').src = item.url;
     newThumbnail.querySelector('.picture__img').alt = item.description;
     newThumbnail.querySelector('.picture__likes').textContent = item.likes;
@@ -36,13 +34,12 @@ const renderCards = (thumbnailArray) => {
       let quantityComments = 0;
       function addPortionComments () {
         quantityComments += PORTION_COMMENTS;
-        commentstBlock.innerHTML = '';
         let addedComments = 0;
+        commentstBlock.innerHTML = '';
 
         if(sameId){
           for (let i = 0 ; i < quantityComments ; i++) {
             const newComment = commentPattern.cloneNode(true);
-
             if(quantityComments >= sameId.comments.length){
               bigPictureContainer.querySelector('.comments-loader').classList.add('hidden');
               quantityComments = sameId.comments.length;
@@ -68,4 +65,4 @@ const renderCards = (thumbnailArray) => {
   picturesContainer.appendChild(thumbnailBox);
 };
 
-export {renderCards};
+export { renderCards, picturesContainer};
