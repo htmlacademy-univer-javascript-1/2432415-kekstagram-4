@@ -1,13 +1,14 @@
 import {photoPreview} from './change-scale.js';
-const SET_OF_FILTERS = [
+const FILTERS = [
   {
     name: 'none',
     style: 'none',
-    min: 0,
+    min: 0 ,
     max: 100,
     step: 1,
     unit:'',
-  },
+  } ,
+
   {
     name: 'chrome',
     style: 'grayscale',
@@ -15,7 +16,8 @@ const SET_OF_FILTERS = [
     max: 1,
     step: 0.1,
     unit:'',
-  },
+  } ,
+
   {
     name: 'sepia',
     style: 'sepia',
@@ -24,14 +26,16 @@ const SET_OF_FILTERS = [
     step: 0.1,
     unit:'',
   },
+
   {
     name: 'marvin',
     style: 'invert',
-    min: 1 ,
+    min: 1,
     max: 100,
     step: 1,
     unit:'%',
   },
+
   {
     name: 'phobos',
     style: 'blur',
@@ -41,6 +45,7 @@ const SET_OF_FILTERS = [
     unit:'px',
 
   },
+
   {
     name: 'heat',
     style: 'brightness',
@@ -51,63 +56,61 @@ const SET_OF_FILTERS = [
   },
 ];
 
-let clickSet = SET_OF_FILTERS[0];
+let clickedSet = FILTERS[0];
+
+const effectsBlock = document.querySelector('.effects');
+const sliderSetsContainer = document.querySelector('.img-upload__effect-level');
 
 const levelEffect = document.querySelector('.effect-level__value');
-const sliderElem = document.querySelector('.effect-level__slider');
-const effectsBlock = document.querySelector('.effects');
-const sliderSetContainer = document.querySelector('.img-upload__effect-level');
+const sliderElement = document.querySelector('.effect-level__slider');
 
-function hideSlaiderContainer () {sliderSetContainer.classList.add('hidden');}
+function hideSlaiderContainer () {sliderSetsContainer.classList.add('hidden');}
+function showSlaiderContainer () {sliderSetsContainer.classList.remove('hidden');}
 
-function showSlaiderContainer () {sliderSetContainer.classList.remove('hidden');}
-
-const templateSlider = ()=> sliderElem.noUiSlider.updateOptions({
+const createsTemplateSlider = () => sliderElement.noUiSlider.updateOptions({
   range: {
-    min: clickSet.min,
-    max: clickSet.max,
+    min: clickedSet.min,
+    max: clickedSet.max,
   },
-  step: clickSet.step,
-  start: clickSet.max,
+  step: clickedSet.step,
+  start: clickedSet.max,
 });
 
 function recetEffects () {
-  clickSet = SET_OF_FILTERS[0];
-  templateSlider();
+  clickedSet = FILTERS[0];
+  createsTemplateSlider();
 }
 
 const onAddsClassEffect = (evt) => {
-  clickSet = SET_OF_FILTERS.find((set)=> set.name === evt.target.value);
-  photoPreview.className = `effects__preview--${clickSet.name}`;
-  templateSlider();
+  clickedSet = FILTERS.find((set)=> set.name === evt.target.value);
+  photoPreview.className = `effects__preview--${clickedSet.name}`;
+  createsTemplateSlider();
 };
 
-noUiSlider.create(sliderElem, {
-  range:
-  {
-    min: SET_OF_FILTERS[0].min,
-    max: SET_OF_FILTERS[0].max,
-  },
-  start: SET_OF_FILTERS[0].min,
-  step: SET_OF_FILTERS[0].step,
+noUiSlider.create(sliderElement, {
+  range: {
+    min: FILTERS[0].min,
+    max: FILTERS[0].max,},
+  start: FILTERS[0].min,
+  step: FILTERS[0].step,
   connect: 'lower',
 });
 
 const onChangeLevelEffect = () => {
-  const sliderLevel = sliderElem.noUiSlider.get() ;
-  if(clickSet === SET_OF_FILTERS[0]){
-    photoPreview.style.filter = SET_OF_FILTERS[0].style;
+  const sliderLevel = sliderElement.noUiSlider.get() ;
+  if(clickedSet === FILTERS[0]){
+    photoPreview.style.filter = FILTERS[0].style;
     hideSlaiderContainer();
   }
   else
   {
-    photoPreview.style.filter = `${clickSet.style}(${sliderLevel}${clickSet.unit})`;
+    photoPreview.style.filter = `${clickedSet.style}(${sliderLevel}${clickedSet.unit})`;
     levelEffect.value = sliderLevel;
     showSlaiderContainer();
   }
 };
 
 effectsBlock.addEventListener('change', onAddsClassEffect);
-sliderElem.noUiSlider.on('update', onChangeLevelEffect);
+sliderElement.noUiSlider.on('update', onChangeLevelEffect);
 
 export {recetEffects};
