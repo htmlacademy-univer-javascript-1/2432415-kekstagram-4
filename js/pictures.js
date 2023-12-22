@@ -15,6 +15,7 @@ const createPhoto = (photo) => {
 
 const photos = createArray().map(createPhoto)
 fragment.append(createPhoto(photos));
+
 element.append(fragment);
 
 
