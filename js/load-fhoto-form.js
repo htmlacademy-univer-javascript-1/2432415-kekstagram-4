@@ -7,7 +7,7 @@ const CORRECT_HASHTAG_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
 const MAX_HASHTAG_QUANTITY = 5;
 
 const editingForm = document.querySelector('.img-upload__overlay');
-const loadingFileButton = document.querySelector('#upload-file');
+const loadingFileButton = document.querySelector('.img-upload__input');
 
 const loadingFormButton = document.querySelector('#upload-submit');
 
